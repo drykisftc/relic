@@ -32,6 +32,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.robotcore.eventloop.SyncdDevice;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
@@ -88,40 +90,30 @@ public class DanceAutoOp extends VortexAutoOp {
         telemetry.addData("Current Time: ", "%02d", System.currentTimeMillis() - lastTimeStamp);
         switch (state) {
             case 0:
-                if(gyroTracker.goStraight (0, cruisingTurnGain, 0.2,
-                        start2FireDistance, 0, 1) == 1){
-                    start2FireDistance = 0;
-                }
-                VortexUtils.moveMotorByEncoder(robot.motorLeftArm,
-                        leftArmFirePosition, 0.25);
-                if(System.currentTimeMillis() - lastTimeStamp < 7000){
-                    armB(0.2);
+                if (System.currentTimeMillis() - lastTimeStamp < 1000) {
+                    leftBeaconArm.setPosition(30,90);
+                    rightBeaconArm.setPosition(0,30);
+                    //gyroTracker.turn(50)
+
                 } else {
-                    armA();
-                }
-                if (System.currentTimeMillis() - lastTimeStamp > 8000) {
-                    state = 1;
-                    lastTimeStamp = System.currentTimeMillis();
+                    state ++;
                 }
                 break;
             case 1:
-                state = beforeShootDance(danceBeats, 1, 2);
-                if(state == 2) dancePatternReset();
-                break;
-            case 2:
-                particleShooter.loop(state, state+1);
-                state = cowboyDance2(danceBeats, 2, 3);
-                if(state == 3) dancePatternReset();
-                break;
-            case 3:
-                state = cowboyDance3(danceBeats, 3, 4);
-                if(state == 4) dancePatternReset();
+                if (System.currentTimeMillis() - lastTimeStamp < 2000) {
+                    leftBeaconArm.setPosition(0, 30);
+                    rightBeaconArm.setPosition(0,30);
+                    //gyroTracker.goStraight() // meters
+                } else {
+                    state ++ ;
+                }
                 break;
             default:
                 dancePatternReset();
                 //state = 0; // repeat
                 break;
         }
+        lastTimeStamp = System.currentTimeMillis();
     }
 
     public void findEmptySpot () {

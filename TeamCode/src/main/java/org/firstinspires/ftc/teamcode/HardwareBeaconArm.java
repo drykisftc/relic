@@ -210,24 +210,29 @@ public class HardwareBeaconArm extends HardwareBase {
         }
     }
 
-    void positionA (){ //position at beginning
-        upperArm.setPosition(0);
-        lowerArm.setPosition(0);
+    void setPosition (int upperArmP, int lowerArmP) {
+        upperArm.setPosition(upperArmP);
+        lowerArm.setPosition(lowerArmP);
     }
-    void positionB (){
-        upperArm.setPosition(90);
-        lowerArm.setPosition(180);
-    }
-    void positionC (){
-        upperArm.setPosition(45);
-        lowerArm.setPosition(180);
-    }
-    void positionD (){
-        upperArm.setPosition(135);
-        lowerArm.setPosition(180);
-    }
-    void positionE () {
-        upperArm.setPosition(45);
-        lowerArm.setPosition(90);
-    }
+
+//    void positionA (){ //position at beginning
+//        upperArm.setPosition(0);
+//        lowerArm.setPosition(0);
+//    }
+//    void positionB (){
+//        upperArm.setPosition(90);
+//        lowerArm.setPosition(180);
+//    }
+//    void positionC (){
+//        upperArm.setPosition(45);
+//        lowerArm.setPosition(180);
+//    }
+//    void positionD (){
+//        upperArm.setPosition(135);
+//        lowerArm.setPosition(180);
+//    }
+//    void positionE () {
+//        upperArm.setPosition(45);
+//        lowerArm.setPosition(90);
+//    }
 }

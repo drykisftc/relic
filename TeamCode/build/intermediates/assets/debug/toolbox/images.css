@@ -106,15 +106,19 @@
   background-image: url(../images/ftcLinearOpMode.png);
 }
 
+.LynxI2cColorRangeSensor-icon {
+  background-image: url(../images/ftcColorSensor.png);
+}
+
+.MrI2cRangeSensor-icon {
+  background-image: url(../images/ftcOpticalDistanceSensor.png);
+}
+
 .OpMode-icon {
   background-image: url(../images/ftcOpMode.png);
 }
 
 .OpticalDistanceSensor-icon {
-  background-image: url(../images/ftcOpticalDistanceSensor.png);
-}
-
-.MrI2cRangeSensor-icon {
   background-image: url(../images/ftcOpticalDistanceSensor.png);
 }
 

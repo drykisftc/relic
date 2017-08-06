@@ -7,13 +7,14 @@
 <!-- The package name here determines the package for your R class and your BuildConfig class -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.qualcomm.ftcrobotcontroller"
-    android:versionCode="14"
-    android:versionName="2.35" >
+    android:versionCode="21"
+    android:versionName="3.1" >
 
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission
         android:name="android.permission.ACCESS_WIFI_STATE"
         android:required="true" />
@@ -39,6 +40,9 @@
         android:required="true" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
+        android:required="true" />
+    <uses-permission
+        android:name="android.permission.SERIAL_PORT"
         android:required="true" />
     <!--
   Note: we suspect that this (android.permission.WAKE_LOCK) is no
@@ -74,16 +78,16 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" > <!-- The main robot controller activity -->
         <activity
             android:name="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
@@ -92,10 +96,24 @@
             <meta-data
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
-        </activity>
+        </activity> <!-- Assistant that autostarts the robot controller on android boot -->
+        <receiver
+            android:name="org.firstinspires.ftc.robotcontroller.internal.RunOnStartup"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
 
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver> <!-- The robot controller service in which most of the robot functionality is managed -->
         <service
             android:name="com.qualcomm.ftccommon.FtcRobotControllerService"
+            android:enabled="true" /> <!-- A service that will auto-restart the robot controller if it crashes (if it's supposed to :-) -->
+        <service
+            android:name="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerWatchdogService"
             android:enabled="true" />
 
         <activity
@@ -118,13 +136,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <receiver
-            android:name="org.firstinspires.inspection.DeviceNameReceiver"
-            android:enabled="true"
-            android:exported="true" >
-        </receiver>
-
         <activity
             android:name="com.google.blocks.ftcrobotcontroller.ProgrammingModeActivity"
             android:configChanges="orientation|screenSize"
@@ -213,11 +224,49 @@
             android:exported="true"
             android:label="@string/title_activity_config_wifi_direct" />
         <activity
-            android:name="com.qualcomm.ftccommon.FtcWifiChannelSelectorActivity"
+            android:name="com.qualcomm.ftccommon.FtcAdvancedRCSettingsActivity"
+            android:exported="true"
+            android:label="@string/titleAdvancedRCSettings" >
+            <intent-filter>
+                <action android:name="com.qualcomm.ftccommon.FtcAdvancedRCSettingsActivity.intent.action.Launch" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.qualcomm.ftccommon.FtcLynxFirmwareUpdateActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.qualcomm.ftccommon.FtcLynxFirmwareUpdateModeActivity.intent.action.Launch" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.qualcomm.ftccommon.FtcLynxModuleAddressUpdateActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.qualcomm.ftccommon.FtcLynxModuleAddressUpdateActivity.intent.action.Launch" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.qualcomm.ftccommon.FtcWifiDirectChannelSelectorActivity"
             android:exported="true"
             android:label="@string/title_activity_wifi_channel_selector" >
             <intent-filter>
-                <action android:name="com.qualcomm.ftccommon.FtcWifiChannelSelectorActivity.intent.action.Launch" />
+                <action android:name="com.qualcomm.ftccommon.FtcWifiDirectChannelSelectorActivity.intent.action.Launch" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.qualcomm.ftccommon.FtcWifiDirectRememberedGroupsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_wifi_remembered_groups_editor" >
+            <intent-filter>
+                <action android:name="com.qualcomm.ftccommon.FtcWifiDirectRememberedGroupsActivity.intent.action.Launch" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -244,6 +293,12 @@
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
+            android:name="com.qualcomm.ftccommon.configuration.EditLegacyMotorControllerActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/edit_motor_controller_activity"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
             android:name="com.qualcomm.ftccommon.configuration.EditMotorListActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/edit_motor_controller_activity"
@@ -251,6 +306,12 @@
         </activity>
         <activity
             android:name="com.qualcomm.ftccommon.configuration.EditServoControllerActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/edit_servo_controller_activity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <activity
+            android:name="com.qualcomm.ftccommon.configuration.EditLegacyServoControllerActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/edit_servo_controller_activity"
             android:windowSoftInputMode="stateHidden|adjustResize" >
@@ -280,6 +341,18 @@
             android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
+            android:name="com.qualcomm.ftccommon.configuration.EditLynxModuleActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/edit_lynx_module_controller_activity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <activity
+            android:name="com.qualcomm.ftccommon.configuration.EditLynxUsbDeviceActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/edit_lynx_usb_device_activity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <activity
             android:name="com.qualcomm.ftccommon.configuration.EditPWMDevicesActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/edit_pwm_devices_activity"
@@ -298,7 +371,19 @@
             android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
+            android:name="com.qualcomm.ftccommon.configuration.EditDigitalDevicesActivityLynx"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/edit_digital_devices_activity_lynx"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <activity
             android:name="com.qualcomm.ftccommon.configuration.EditI2cDevicesActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/edit_i2c_devices_activity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <activity
+            android:name="com.qualcomm.ftccommon.configuration.EditI2cDevicesActivityLynx"
             android:configChanges="orientation|screenSize"
             android:label="@string/edit_i2c_devices_activity"
             android:windowSoftInputMode="stateHidden|adjustResize" >
