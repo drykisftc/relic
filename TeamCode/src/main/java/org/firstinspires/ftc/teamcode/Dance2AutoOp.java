@@ -159,8 +159,7 @@ public class Dance2AutoOp extends VortexAutoOp {
                 break;
             case 1:
                 if (System.currentTimeMillis() - lastTimeStamp < 6000) {
-                    leftBeaconArm.setPosition(0.25, 0.0);
-                    rightBeaconArm.setPosition(0.75,1.0);
+                    armPosition0();
                     //gyroTracker.goStraight() // meters
                 } else {
                     state ++ ;
@@ -168,360 +167,315 @@ public class Dance2AutoOp extends VortexAutoOp {
                 break;
             case 2:
                 if (System.currentTimeMillis() - lastTimeStamp < 8000){
-                    leftBeaconArm.setPosition(0.625, 0.0);
-                    rightBeaconArm.setPosition(1.0,1.0);
+                    armPosition1();
                 } else {
                     state ++ ;
                 }
                 break;
             case 3:
                 if (System.currentTimeMillis() - lastTimeStamp < 12000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition2();
                 } else {
                     state ++;
                 }
                 break;
             case 4:
                 if (System.currentTimeMillis() - lastTimeStamp < 16000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition3();
                 } else {
                     state++;
                 }
                 break;
             case 5:
                 if (System.currentTimeMillis() - lastTimeStamp < 18000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 }else {
                     state++;
                 }
                 break;
             case 6:
                 if (System.currentTimeMillis() - lastTimeStamp < 19000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition4();
             } else{
                     state++;
                 }
                 break;
             case 7:
                 if (System.currentTimeMillis() - lastTimeStamp <20000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition6();
                 } else{
                     state++;
                 }
                 break;
             case 8:
                 if (System.currentTimeMillis() - lastTimeStamp < 22000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition7();
                 } else{
                     state++;
                 }
                 break;
             case 9:
                 if (System.currentTimeMillis() - lastTimeStamp <24000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition6();
                 } else{
                     state++;
                 }
                 break;
             case 10:
                 if (System.currentTimeMillis() - lastTimeStamp <26000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 11:
                 if (System.currentTimeMillis() - lastTimeStamp <28000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 12:
                 if (System.currentTimeMillis() - lastTimeStamp <32000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 13:
                 if (System.currentTimeMillis() - lastTimeStamp <34000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition1(); //the complicated one
                 } else{
                     state++;
                 }
                 break;
             case 14:
                 if (System.currentTimeMillis() - lastTimeStamp <36000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 15:
                 if (System.currentTimeMillis() - lastTimeStamp <38000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition1(); //the complicated one
                 } else{
                     state++;
                 }
                 break;
             case 16:
                 if (System.currentTimeMillis() - lastTimeStamp <39000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition9();
                 } else{
                     state++;
                 }
                 break;
             case 17:
                 if (System.currentTimeMillis() - lastTimeStamp <4000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition8();
                 } else{
                     state++;
                 }
                 break;
             case 18:
                 if (System.currentTimeMillis() - lastTimeStamp <41000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition11();
                 } else{
                     state++;
                 }
                 break;
             case 19:
                 if (System.currentTimeMillis() - lastTimeStamp <42000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition10();
                 } else{
                     state++;
                 }
                 break;
             case 20:
                 if (System.currentTimeMillis() - lastTimeStamp <43000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition4();
                 } else{
                     state++;
                 }
                 break;
             case 21:
                 if (System.currentTimeMillis() - lastTimeStamp <44000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition6();
                 } else{
                     state++;
                 }
                 break;
             case 22:
                 if (System.currentTimeMillis() - lastTimeStamp <45000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition5();
                 } else{
                     state++;
                 }
                 break;
             case 23:
                 if (System.currentTimeMillis() - lastTimeStamp <46000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 24:
                 if (System.currentTimeMillis() - lastTimeStamp <47000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition4();
                 } else{
                     state++;
                 }
                 break;
             case 25:
                 if (System.currentTimeMillis() - lastTimeStamp <48000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition6();
                 } else{
                     state++;
                 }
                 break;
             case 26:
                 if (System.currentTimeMillis() - lastTimeStamp <49000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition1();
                 } else{
                     state++;
                 }
                 break;
             case 27:
                 if (System.currentTimeMillis() - lastTimeStamp <50000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition7();
                 } else{
                     state++;
                 }
                 break;
             case 28:
                 if (System.currentTimeMillis() - lastTimeStamp <52000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 29:
                 if (System.currentTimeMillis() - lastTimeStamp <54000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition1();
                 } else{
                     state++;
                 }
                 break;
             case 30:
                 if (System.currentTimeMillis() - lastTimeStamp <56000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 31:
                 if (System.currentTimeMillis() - lastTimeStamp <58000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 32:
                 if (System.currentTimeMillis() - lastTimeStamp <60000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 33:
                 if (System.currentTimeMillis() - lastTimeStamp <62000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition1(); //the complicated one
                 } else{
                     state++;
                 }
                 break;
             case 34:
                 if (System.currentTimeMillis() - lastTimeStamp <64000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 35:
                 if (System.currentTimeMillis() - lastTimeStamp <66000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition1(); //the complicated one
                 } else{
                     state++;
                 }
                 break;
             case 36:
                 if (System.currentTimeMillis() - lastTimeStamp <70000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition7(); //the really complicated one
                 } else{
                     state++;
                 }
                 break;
             case 37:
                 if (System.currentTimeMillis() - lastTimeStamp <72000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition7();
                 } else{
                     state++;
                 }
                 break;
             case 38:
                 if (System.currentTimeMillis() - lastTimeStamp <74000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 39:
                 if (System.currentTimeMillis() - lastTimeStamp <78000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition5();
                 } else{
                     state++;
                 }
                 break;
             case 40:
                 if (System.currentTimeMillis() - lastTimeStamp <82000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition4();
                 } else{
                     state++;
                 }
                 break;
             case 41:
                 if (System.currentTimeMillis() - lastTimeStamp <84000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 42:
                 if (System.currentTimeMillis() - lastTimeStamp <85000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition11();
                 } else{
                     state++;
                 }
                 break;
             case 43:
                 if (System.currentTimeMillis() - lastTimeStamp <86000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition10();
                 } else{
                     state++;
                 }
                 break;
             case 44:
                 if (System.currentTimeMillis() - lastTimeStamp <90000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition7(); //the really complicated one
                 } else{
                     state++;
                 }
                 break;
             case 45:
                 if (System.currentTimeMillis() - lastTimeStamp <92000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                 } else{
                     state++;
                 }
                 break;
             case 46:
                 if (System.currentTimeMillis() - lastTimeStamp <94000){
-                    leftBeaconArm.setPosition(0.9,0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0(); //extend forklift & pop confetti
                 } else{
                     state++;
                 }
