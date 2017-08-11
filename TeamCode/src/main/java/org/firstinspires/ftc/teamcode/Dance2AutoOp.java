@@ -81,63 +81,63 @@ public class Dance2AutoOp extends VortexAutoOp {
     }
 
     protected void armPosition0() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(1.0, 1.0);
+        rightBeaconArm.setPosition(0.0, 0.0);
     }
 
     protected void armPosition1() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(0.25, 0.0);
+        rightBeaconArm.setPosition(0.75, 1.0);
     }
 
     protected void armPosition2() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(0.625, 0.0);
+        rightBeaconArm.setPosition(1.0, 1.0);
     }
 
     protected void armPosition3() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(0.0, 0.0);
+        rightBeaconArm.setPosition(0.375, 1.0);
     }
 
     protected void armPosition4() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(1.0, 1.0);
+        rightBeaconArm.setPosition(0.375, 1.0);
     }
 
     protected void armPosition5() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(0.625, 0.0);
+        rightBeaconArm.setPosition(0.0, 0.0);
     }
 
     protected void armPosition6() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(0.625, 0.0);
+        rightBeaconArm.setPosition(0.375, 1.0);
     }
 
     protected void armPosition7() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(0.0, 0.0);
+        rightBeaconArm.setPosition(1.0, 1.0);
     }
 
     protected void armPosition8() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(0.0, 0.0);
+        rightBeaconArm.setPosition(0.0, 0.0);
     }
 
     protected void armPosition9() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(1.0, 1.0);
+        rightBeaconArm.setPosition(1.0, 1.0);
     }
 
     protected void armPosition10() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(0.625, 0.0);
+        rightBeaconArm.setPosition(0.0, 0.00);
     }
 
     protected void armPosition11() {
-        leftBeaconArm.setPosition(0.9, 0.85);
-        rightBeaconArm.setPosition(0.1,0.08);
+        leftBeaconArm.setPosition(1.0, 1.0);
+        rightBeaconArm.setPosition(0.75, 1.0);
     }
 
     /*
