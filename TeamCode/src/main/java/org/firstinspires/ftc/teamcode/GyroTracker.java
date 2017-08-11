@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.util.Range;
 public class GyroTracker extends Tracker {
 
     ModernRoboticsI2cGyro gyro = null;
-
     private DcMotor leftWheel = null;
     private DcMotor rightWheel = null;
 
@@ -17,13 +16,15 @@ public class GyroTracker extends Tracker {
     private int bufferIndex = 0;
 
     private double targetHeading =0;
+    public  int breakDistance = 500; // slow down before complete stop
+    private double breakPower = 0.15;
 
     /*
     adjust to the correct sensitivity for each robot
      */
     private double minTurnSpeed = 1.0;
     private double maxTurnSpeed = 10;
-    private double minAnglePowerStepSize = 0.02;
+    private double minAnglePowerStepSize = 0.0008;
     private int flipCountLimit = 1;
     
     private long lastLogTimeStamp = 0;
@@ -32,11 +33,11 @@ public class GyroTracker extends Tracker {
     private int landMarkPosition = 0;
     private int landMarkAngle = 0;
 
-    public GyroTracker(ModernRoboticsI2cGyro leftO,
+    public GyroTracker(ModernRoboticsI2cGyro g,
                        DcMotor leftW,
                        DcMotor rightW,
                        int bufferS){
-        gyro = leftO;
+        gyro = g;
         leftWheel = leftW;
         rightWheel = rightW;
         bufferSize = bufferS;
@@ -48,16 +49,15 @@ public class GyroTracker extends Tracker {
      * Code to run ONCE when the driver hits INIT
      */
     public void init() {
-        if (reporter != null) {
-            reporter.addData("GyroTracker", "init....");
-        }
-        gyro.calibrate();
+        report("GyroTracker", "init....");
+        
         state =0;
     }
 
     @Override
     public void start (int state ) {
         super.start(state);
+        gyro.resetZAxisIntegrator();
         int lD = leftWheel.getCurrentPosition();
         int rD = rightWheel.getCurrentPosition();
         landMarkPosition = Math.min(lD, rD);
@@ -80,18 +80,19 @@ public class GyroTracker extends Tracker {
      */
     public boolean maintainHeading(double target, double power) {
 
-        targetHeading = VortexUtils.normalizeHeading(target);
+        //targetHeading = VortexUtils.normalizeHeading(target);
+        targetHeading = target;
 
         boolean boolNoTurning = false;
         int heading = gyro.getHeading();
-        double delta = VortexUtils.getAngleError(targetHeading, heading);
+        double delta = VortexUtils.getAngleError(target, heading);
 
         // compute power delta
         double deltaPower = computeTurnPower(delta);
         leftWheel.setPower(Range.clip(power - deltaPower, -1, 1));
         rightWheel.setPower(Range.clip(power + deltaPower, -1, 1));
 
-        // move motor
+        //  complete state checking
         if ( deltaPower  ==  0.0) {
             boolNoTurning = true;
         }
@@ -104,17 +105,18 @@ public class GyroTracker extends Tracker {
             reporter.addData("Heading target      =", "%.3f", targetHeading);
             reporter.addData("Heading delta       =", "%.2f", delta);
             reporter.addData("Heading tolerance   =", "%.2f", skewTolerance);
-            reporter.addData("Heading power       =", "%.2f", power);
-            reporter.addData("Heading delta power =", "%.2f", deltaPower);
             reporter.addData("Heading gain        =", "%.2f", skewPowerGain);
             reporter.addData("Minimum turn power  =", "%.2f", minTurnPower);
+            reporter.addData("Heading power       =", "%.2f", power);
+            reporter.addData("Heading turn power  =", "%.2f", deltaPower);
+            reporter.addData("Landmark            =", landMarkPosition);
         }
 
         return boolNoTurning;
     }
 
     private void adjustMinTurnPower(double currentDelta) {
-        if (currentDelta > skewTolerance) {
+        if ( Math.abs(currentDelta) > skewTolerance) {
             double minV = 1000;
             double maxV = -1000;
             double lastV = 0;
@@ -134,9 +136,12 @@ public class GyroTracker extends Tracker {
             if (deltaChange < minTurnSpeed) {
                 // robot could not turn, boost min turn power to over come the friction
                 minTurnPower += minAnglePowerStepSize;
+                maxTurnPower += minAnglePowerStepSize;
             } else if (flipCount >= flipCountLimit ) {
                 // robot always over-compensated, tune down the min turn power
-                minTurnPower -= minAnglePowerStepSize*0.618;
+                minTurnPower = Math.max(0.0, minTurnPower-minAnglePowerStepSize);
+            } else if (deltaChange > maxTurnSpeed) {
+                maxTurnPower = Math.max(minTurnPower+0.01, maxTurnPower-minAnglePowerStepSize);
             }
         }
     }
@@ -156,19 +161,37 @@ public class GyroTracker extends Tracker {
     }
 
     public int goStraight ( double heading, double gain, double power,
-                            int deltaDistance,
+                            int targetDistance,
                             int startState, int endState) {
-        // get motor distance
+
+        // check target distance sign
+        targetDistance = Math.abs(targetDistance);
+
+        // get traveling distance
         int lD = leftWheel.getCurrentPosition();
         int rD = rightWheel.getCurrentPosition();
-        int d = Math.min(lD, rD);
-
-        if ( d - landMarkPosition < deltaDistance) {
-            skewPowerGain = gain;
-            maintainHeading(heading, power);
-            return startState;
+        int d = (lD+rD)/2;
+        skewPowerGain = gain;
+        int travelDistance = d - landMarkPosition;
+        double breakingP = Math.abs(breakPower);
+        if (power < 0) { // if move backward
+            travelDistance *= -1;
+            breakingP *= -1;
         }
-        // go to next state
+
+        // move
+        if (travelDistance < targetDistance) {
+            if (targetDistance - travelDistance < Math.abs(breakDistance)) {
+                // slow down when close to target
+                maintainHeading(heading, breakingP);
+                return startState;
+            } else {
+                maintainHeading(heading, power);
+                return startState;
+            }
+        }
+
+        // stop and return next state
         landMarkPosition = d;
         leftWheel.setPower(0.0);
         rightWheel.setPower(0.0);
@@ -186,23 +209,35 @@ public class GyroTracker extends Tracker {
         rightWheel.setPower(0.0);
         int lD = leftWheel.getCurrentPosition();
         int rD = rightWheel.getCurrentPosition();
-        landMarkPosition = Math.min(lD, rD);
+        landMarkPosition = (lD+rD)/2;
         return endState;
     }
 
     public int getWheelLandmarkOdometer () {
         int lD = leftWheel.getCurrentPosition();
         int rD = rightWheel.getCurrentPosition();
-        int d = Math.min(lD, rD);
+        int d = (lD+rD)/2;
         return d- landMarkPosition;
     }
 
     public void setWheelLandmark () {
         int lD = leftWheel.getCurrentPosition();
         int rD = rightWheel.getCurrentPosition();
-        int d = Math.min(lD, rD);
+        int d = (lD+rD)/2;
         landMarkPosition = d;
     }
 
+    public int getWheelLandmark () {
+        return landMarkPosition;
+    }
+
+    public void stopWheels() {
+        leftWheel.setPower(0.0);
+        rightWheel.setPower(0.0);
+    }
+    public void waggleWheels (double power ) {
+        leftWheel.setPower(power);
+        rightWheel.setPower(-1.0*power);
+    }
 
 }

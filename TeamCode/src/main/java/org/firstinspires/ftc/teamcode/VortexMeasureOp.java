@@ -56,14 +56,16 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 @TeleOp(name="TeleOp: Z measure", group="Testing")
 public class VortexMeasureOp extends VortexTeleOp {
 
-    HardwareLineTracker lineTracker = new HardwareLineTracker();
-    HardwareGyroTracker gyroTracker = new HardwareGyroTracker();
+    HardwareLineTracker lineTracker = null;
+    HardwareGyroTracker gyroTrackerHW = null;
 
     int xVal, yVal, zVal = 0;     // Gyro rate Values
     int heading = 0;              // Gyro integrated heading
     int angleZ = 0;
     boolean lastResetState = false;
     boolean curResetState  = false;
+
+    //2200 per 2 feet
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -74,7 +76,11 @@ public class VortexMeasureOp extends VortexTeleOp {
          * The init() method of the hardware class does all the work here
          */
         super.init();
-        gyroTracker.init(robot.hwMap);
+
+        lineTracker = new HardwareLineTracker();
+        gyroTrackerHW = new HardwareGyroTracker();
+
+        gyroTrackerHW.init(robot.hwMap);
         lineTracker.init(robot.hwMap,4);
 
         // Send telemetry message to signify robot waiting;
@@ -88,7 +94,8 @@ public class VortexMeasureOp extends VortexTeleOp {
     @Override
     public void init_loop() {
         // make sure the gyro is calibrated.
-        if (gyroTracker.gyro.isCalibrating())  {
+        if (gyroTrackerHW.gyro.isCalibrating())  {
+            telemetry.addData("Gyro measuring mode", gyroTrackerHW.gyro.getMeasurementMode());
             telemetry.addData(">", "Gyro is calibrating.  DO NOT start!!!!");
             telemetry.addData(">", "NO! NO! NO! Don't! Don't! Don't! Wait! Wait! Wait! ");
             telemetry.addData(">", "NO! NO! NO! Don't! Don't! Don't! Wait! Wait! Wait! ");
@@ -107,20 +114,25 @@ public class VortexMeasureOp extends VortexTeleOp {
     @Override
     public void start() {
 
-        gyroTracker.gyro.resetZAxisIntegrator();
+        gyroTrackerHW.gyro.resetZAxisIntegrator();
 
         robot.motorLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.motorRightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.motorLeftWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.motorRightWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftWheel.setPower(0.0);
+        robot.motorRightWheel.setPower(0.0);
 
         robot.motorLeftArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.motorRightArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.motorLeftArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.motorRightArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftArm.setPower(0.0);
+        robot.motorRightArm.setPower(0.0);
 
         robot.motorLeftHand.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.motorLeftHand.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftHand.setPower(0.0);
 
     }
 
@@ -134,9 +146,57 @@ public class VortexMeasureOp extends VortexTeleOp {
         telemetry.addData("Left wheel pos ", "%6d", robot.motorLeftWheel.getCurrentPosition());
         telemetry.addData("right wheel pos", "%6d", robot.motorRightWheel.getCurrentPosition());
 
+        // get gyro info
+        curResetState = (gamepad1.x);
+        if(curResetState && !lastResetState)  {
+            gyroTrackerHW.gyro.resetZAxisIntegrator();
+        }
+        lastResetState = curResetState;
+
+        xVal = gyroTrackerHW.gyro.rawX();
+        yVal = gyroTrackerHW.gyro.rawY();
+        zVal = gyroTrackerHW.gyro.rawZ();
+
+        heading = gyroTrackerHW.gyro.getHeading();
+        angleZ  = gyroTrackerHW.gyro.getIntegratedZValue();
+
+        telemetry.addData("Gyro", "Press A & B to reset Heading.");
+        telemetry.addData("0", "Heading %03d", heading);
+        telemetry.addData("1", "Int. Ang. %03d", angleZ);
+        telemetry.addData("2", "X av. %03d", xVal);
+        telemetry.addData("3", "Y av. %03d", yVal);
+        telemetry.addData("4", "Z av. %03d", zVal);
+
+        // get beacon arm sensor info
+        telemetry.addData("Left Upper Arm Pos   ", leftBeaconArm.upperArm.getPosition());
+        telemetry.addData("Left Lower Arm Pos   ", leftBeaconArm.lowerArm.getPosition());
+        telemetry.addData("Left Color sensor rgb", "%d,%d,%d", leftBeaconArm.colorSensor.red(),
+                leftBeaconArm.colorSensor.green(), leftBeaconArm.colorSensor.blue());
+        telemetry.addData("Left Color           ", leftBeaconArm.getColorBlueOrRed());
+        telemetry.addData("Left Near counts     ", leftBeaconArm.nearCounts);
+        telemetry.addData("Left Touch counts    ", leftBeaconArm.touchCounts);
+        telemetry.addData("Left Arm State:", "%02d", leftBeaconArm.state);
+
+        telemetry.addData("Right Upper Arm Pos   ", rightBeaconArm.upperArm.getPosition());
+        telemetry.addData("Right Lower Arm Pos   ", rightBeaconArm.lowerArm.getPosition());
+        telemetry.addData("Right Color sensor rgb", "%d,%d,%d", rightBeaconArm.colorSensor.red(),
+                rightBeaconArm.colorSensor.green(), rightBeaconArm.colorSensor.blue());
+        telemetry.addData("Right Color           ", rightBeaconArm.getColorBlueOrRed());
+        telemetry.addData("Right Near counts     ", rightBeaconArm.nearCounts);
+        telemetry.addData("Right Touch counts    ", rightBeaconArm.touchCounts);
+        telemetry.addData("Right Arm State:", "%02d", rightBeaconArm.state);
+
+        // get range info
+        telemetry.addData("Range raw optical    ", "%3d", wallTrackerHW.sonicRange.rawOptical());
+        telemetry.addData("Range cm optical     ", "%.2f cm", wallTrackerHW.sonicRange.cmOptical());
+        telemetry.addData("Range raw ultrasonic ", "%3d",  wallTrackerHW.sonicRange.rawUltrasonic());
+        telemetry.addData("Range cm ultrasonic  ", "%.2f cm", wallTrackerHW.sonicRange.getDistance(DistanceUnit.CM));
+
         // get arm info
         telemetry.addData("left arm pos  ", "%6d", robot.motorLeftArm.getCurrentPosition());
         telemetry.addData("right arm pos ", "%6d", robot.motorRightArm.getCurrentPosition());
+        telemetry.addData("left arm min limit switch on  ", "%b", robot.armStopMin.isPressed());
+        telemetry.addData("left arm max limit switch on  ", "%b", robot.armStopMax.isPressed());
 
         // get hand info
         telemetry.addData("left hand pos ", "%6d", robot.motorLeftHand.getCurrentPosition());
@@ -148,39 +208,9 @@ public class VortexMeasureOp extends VortexTeleOp {
             telemetry.addData("ODS Normal" + Integer.toString(i), lineTracker.sensorArray[i].getLightDetected());
         }
 
-        telemetry.addData("Arm limit switch on  ", "%b", robot.armStop.isPressed());
-
-        // get range info
-        telemetry.addData("Range arm position   ", "%.2f", wallTrackerHW.sonicArm.getPosition());
-        telemetry.addData("Range raw optical    ", "%3d", wallTrackerHW.sonicRange.rawOptical());
-        telemetry.addData("Range cm optical     ", "%.2f cm", wallTrackerHW.sonicRange.cmOptical());
-        telemetry.addData("Range raw ultrasonic ", "%3d",  wallTrackerHW.sonicRange.rawUltrasonic());
-        telemetry.addData("Range cm ultrasonic  ", "%.2f cm", wallTrackerHW.sonicRange.getDistance(DistanceUnit.CM));
-
-        // get gyro info
-        curResetState = (gamepad1.a && gamepad1.b);
-        if(curResetState && !lastResetState)  {
-            gyroTracker.gyro.resetZAxisIntegrator();
-        }
-        lastResetState = curResetState;
-
-        xVal = gyroTracker.gyro.rawX();
-        yVal = gyroTracker.gyro.rawY();
-        zVal = gyroTracker.gyro.rawZ();
-
-        heading = gyroTracker.gyro.getHeading();
-        angleZ  = gyroTracker.gyro.getIntegratedZValue();
-
-        telemetry.addData("Gyro", "Press A & B to reset Heading.");
-        telemetry.addData("0", "Heading %03d", heading);
-        telemetry.addData("1", "Int. Ang. %03d", angleZ);
-        telemetry.addData("2", "X av. %03d", xVal);
-        telemetry.addData("3", "Y av. %03d", yVal);
-        telemetry.addData("4", "Z av. %03d", zVal);
-
-        joystickWheelControl();
+        wheelControl();
         joystickArmControlSimple();
-
+        beaconArmControl();
         telemetry.update();
     }
 
@@ -196,14 +226,16 @@ public class VortexMeasureOp extends VortexTeleOp {
 
 
         if (boolLeftArmEnable) {
-            robot.motorLeftArm.setPower(Range.clip(VortexUtils.lookUpTableFunc(throttle, armPowerLUT),-1,1));
+            robot.motorLeftArm.setPower(Range.clip(VortexUtils.lookUpTableFunc(throttle, leftArmPowerLUT),-1,1));
         }
 
         if (boolRightArmEnable) {
-            robot.motorRightArm.setPower(Range.clip(VortexUtils.lookUpTableFunc(throttle, armPowerLUT),-1,1));
+            robot.motorRightArm.setPower(Range.clip(VortexUtils.lookUpTableFunc(throttle, leftArmPowerLUT),-1,1));
         }
 
-        robot.motorLeftHand.setPower(Range.clip(gamepad1.right_trigger, -1, 1));
+        if (Math.abs(gamepad1.right_trigger) > 0.01){
+            robot.motorLeftHand.setPower(Range.clip(gamepad1.right_trigger, -1, 1));
+        }
     }
 
     /*
