@@ -138,10 +138,10 @@ class VortexTeleOp extends OpMode{
 
     // left arm control information
     HardwareBeaconArm leftBeaconArm = null;
-    private double leftUpHomePosition = 0.96;
-    private double leftUpStepSize = -0.025;
-    private double leftLowHomePosition = 0.97;
-    private double leftLowStepSize = -0.08;
+    protected double leftUpHomePosition = 0.99;
+    protected double leftUpStepSize = -0.025;
+    protected double leftLowHomePosition = 0.97;
+    protected double leftLowStepSize = -0.08;
 
     /* Important: use the core device discovery tool to set color sensor address to 0x40
     Then, use the 7 bit version of it 0x20
@@ -150,10 +150,10 @@ class VortexTeleOp extends OpMode{
 
     // right arm control information
     HardwareBeaconArm rightBeaconArm = null;
-    private double rightUpHomePosition = 0.1;
-    private double rightUpStepSize = 0.025;
-    private double rightLowHomePosition = 0.01;
-    private double rightLowStepSize = 0.08;
+    protected double rightUpHomePosition = 0.1;
+    protected double rightUpStepSize = 0.025;
+    protected double rightLowHomePosition = 0.01;
+    protected double rightLowStepSize = 0.08;
     /* Important: use the core device discovery tool to set color sensor address to 0x48
     Then, use the 7 bit version of it 0x24
      */
