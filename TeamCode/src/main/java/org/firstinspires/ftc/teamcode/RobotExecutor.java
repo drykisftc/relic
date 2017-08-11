@@ -28,7 +28,6 @@ public class RobotExecutor {
      * @param startState, The initial state of wall follower
      */
     public void start(int startState) {
-
         state = startState;
     }
 
@@ -47,6 +46,12 @@ public class RobotExecutor {
 
     public void setReporter (Telemetry t){
         reporter = t;
+    }
+
+    public void report (String key, String value) {
+        if (reporter != null) {
+            reporter.addData(key, value);
+        }
     }
 
 }
