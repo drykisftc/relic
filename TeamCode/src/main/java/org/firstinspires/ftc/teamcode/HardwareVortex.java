@@ -73,8 +73,8 @@ public class HardwareVortex extends HardwareBase
 
         motorLeftWheel   = hwMap.dcMotor.get("leftWheel");
         motorRightWheel  = hwMap.dcMotor.get("rightWheel");
-        motorLeftWheel.setDirection(DcMotor.Direction.FORWARD);  // 40 to 1 andymark motor
-        motorRightWheel.setDirection(DcMotor.Direction.REVERSE); // 40 to 1 andymark motor
+        motorLeftWheel.setDirection(DcMotor.Direction.REVERSE);  // 40 to 1 andymark motor
+        motorRightWheel.setDirection(DcMotor.Direction.FORWARD); // 40 to 1 andymark motor
         motorLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorRightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorLeftWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -84,8 +84,8 @@ public class HardwareVortex extends HardwareBase
 
         motorLeftArm   = hwMap.dcMotor.get("leftArm");
         motorRightArm  = hwMap.dcMotor.get("rightArm");
-        motorLeftArm.setDirection(DcMotor.Direction.REVERSE);
-        motorRightArm.setDirection(DcMotor.Direction.FORWARD);
+        motorLeftArm.setDirection(DcMotor.Direction.FORWARD);
+        motorRightArm.setDirection(DcMotor.Direction.REVERSE);
         motorLeftArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorRightArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorLeftArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
