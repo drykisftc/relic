@@ -79,6 +79,67 @@ public class Dance2AutoOp extends VortexAutoOp {
         danceState = 0;
         lastTimeStamp = System.currentTimeMillis();
     }
+
+    protected void armPosition0() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition1() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition2() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition3() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition4() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition5() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition6() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition7() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition8() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition9() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition10() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
+    protected void armPosition11() {
+        leftBeaconArm.setPosition(0.9, 0.85);
+        rightBeaconArm.setPosition(0.1,0.08);
+    }
+
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
@@ -90,8 +151,7 @@ public class Dance2AutoOp extends VortexAutoOp {
         switch (state) {
             case 0:
                 if (System.currentTimeMillis() - lastTimeStamp < 4000) {
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    armPosition0();
                     //gyroTracker.turn(50)
                 } else {
                     state ++;
@@ -99,8 +159,8 @@ public class Dance2AutoOp extends VortexAutoOp {
                 break;
             case 1:
                 if (System.currentTimeMillis() - lastTimeStamp < 6000) {
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    leftBeaconArm.setPosition(0.25, 0.0);
+                    rightBeaconArm.setPosition(0.75,1.0);
                     //gyroTracker.goStraight() // meters
                 } else {
                     state ++ ;
@@ -108,8 +168,8 @@ public class Dance2AutoOp extends VortexAutoOp {
                 break;
             case 2:
                 if (System.currentTimeMillis() - lastTimeStamp < 8000){
-                    leftBeaconArm.setPosition(0.9, 0.85);
-                    rightBeaconArm.setPosition(0.1,0.08);
+                    leftBeaconArm.setPosition(0.625, 0.0);
+                    rightBeaconArm.setPosition(1.0,1.0);
                 } else {
                     state ++ ;
                 }
