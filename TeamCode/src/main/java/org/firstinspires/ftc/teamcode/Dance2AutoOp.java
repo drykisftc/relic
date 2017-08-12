@@ -154,342 +154,387 @@ public class Dance2AutoOp extends VortexAutoOp {
                     armPosition0();
                     if (wheelState ==0) wheelTurn(0.0, 180);
                 } else {
-                    state ++;
+                    state +=10;
+                    dancePatternReset();
                 }
                 break;
-            case 1:
-                if (System.currentTimeMillis() - lastTimeStamp < 6000) {
+            case 10:
+                if (System.currentTimeMillis() - lastTimeStamp < 2000) {
                     armPosition0();
                     if (wheelState ==0) wheelTurn(0.0, 180);
                 } else {
                     wheelState =0;
                     state ++ ;
+                    dancePatternReset();
                 }
                 break;
-            case 2:
-                if (System.currentTimeMillis() - lastTimeStamp < 8000){
+            case 20:
+                if (System.currentTimeMillis() - lastTimeStamp < 2000){
                     armPosition1();
                     if (wheelState ==0) wheelMove(0.5, 300);
                 } else {
                     wheelState =0;
                     state ++ ;
+                    dancePatternReset();
                 }
                 break;
-            case 3:
-                if (System.currentTimeMillis() - lastTimeStamp < 12000){
+            case 30:
+                if (System.currentTimeMillis() - lastTimeStamp < 4000){
                     armPosition2();
                 } else {
                     state ++;
+                    dancePatternReset();
                 }
                 break;
-            case 4:
-                if (System.currentTimeMillis() - lastTimeStamp < 16000){
+            case 40:
+                if (System.currentTimeMillis() - lastTimeStamp < 4000){
                     armPosition3();
                 } else {
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 5:
-                if (System.currentTimeMillis() - lastTimeStamp < 18000){
+            case 50:
+                if (System.currentTimeMillis() - lastTimeStamp < 2000){
                     armPosition0();
                 }else {
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 6:
-                if (System.currentTimeMillis() - lastTimeStamp < 19000){
+            case 60:
+                if (System.currentTimeMillis() - lastTimeStamp < 1000){
                     armPosition4();
             } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 7:
-                if (System.currentTimeMillis() - lastTimeStamp <20000){
+            case 70:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition6();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 8:
-                if (System.currentTimeMillis() - lastTimeStamp < 22000){
+            case 80:
+                if (System.currentTimeMillis() - lastTimeStamp < 2000){
                     armPosition7();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 9:
-                if (System.currentTimeMillis() - lastTimeStamp <24000){
+            case 90:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition6();
                     if (wheelState ==0) wheelMove(0.5, 300);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 10:
-                if (System.currentTimeMillis() - lastTimeStamp <26000){
+            case 100:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                     if (wheelState ==0) wheelMove(0.5, -300);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 11:
-                if (System.currentTimeMillis() - lastTimeStamp <28000){
+            case 110:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                     if (wheelState ==0) wheelTurn(0.0, 275);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 12:
-                if (System.currentTimeMillis() - lastTimeStamp <32000){
+            case 120:
+                if (System.currentTimeMillis() - lastTimeStamp <4000){
                     armPosition0();
                     if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 13:
-                if (System.currentTimeMillis() - lastTimeStamp <34000){
+            case 130:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition1(); //the complicated one
                     if (wheelState ==0) wheelTurn(0.0, 180);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 14:
-                if (System.currentTimeMillis() - lastTimeStamp <36000){
+            case 140:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                     if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 15:
-                if (System.currentTimeMillis() - lastTimeStamp <38000){
+            case 150:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition1(); //the complicated one
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 16:
-                if (System.currentTimeMillis() - lastTimeStamp <39000){
+            case 160:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition9();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 17:
-                if (System.currentTimeMillis() - lastTimeStamp <4000){
+            case 170:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition8();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 18:
-                if (System.currentTimeMillis() - lastTimeStamp <41000){
+            case 180:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition11();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 19:
-                if (System.currentTimeMillis() - lastTimeStamp <42000){
+            case 190:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition10();
                 } else{
-                    state++;
+                    state+=10;
                 }
                 break;
-            case 20:
-                if (System.currentTimeMillis() - lastTimeStamp <43000){
+            case 200:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition4();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 21:
-                if (System.currentTimeMillis() - lastTimeStamp <44000){
+            case 210:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition6();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 22:
-                if (System.currentTimeMillis() - lastTimeStamp <45000){
+            case 220:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition5();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 23:
-                if (System.currentTimeMillis() - lastTimeStamp <46000){
+            case 230:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition0();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 24:
-                if (System.currentTimeMillis() - lastTimeStamp <47000){
+            case 240:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition4();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 25:
-                if (System.currentTimeMillis() - lastTimeStamp <48000){
+            case 250:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition6();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 26:
-                if (System.currentTimeMillis() - lastTimeStamp <49000){
+            case 260:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition1();
                 } else{
-                    state++;
+                    state+=10;
+
+                    dancePatternReset();
                 }
                 break;
-            case 27:
-                if (System.currentTimeMillis() - lastTimeStamp <50000){
+            case 270:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition7();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 28:
-                if (System.currentTimeMillis() - lastTimeStamp <52000){
+            case 280:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 29:
-                if (System.currentTimeMillis() - lastTimeStamp <54000){
+            case 290:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition1();
                     if (wheelState ==0) wheelMove(0.5, -300);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 30:
-                if (System.currentTimeMillis() - lastTimeStamp <56000){
+            case 300:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                     if (wheelState ==0) wheelMove(0.5, 300);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 31:
-                if (System.currentTimeMillis() - lastTimeStamp <58000){
+            case 310:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 32:
-                if (System.currentTimeMillis() - lastTimeStamp <60000){
+            case 320:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 33:
-                if (System.currentTimeMillis() - lastTimeStamp <62000){
+            case 330:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition1(); //the complicated one
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 34:
-                if (System.currentTimeMillis() - lastTimeStamp <64000){
+            case 340:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 35:
-                if (System.currentTimeMillis() - lastTimeStamp <66000){
+            case 350:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition1(); //the complicated one
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 36:
-                if (System.currentTimeMillis() - lastTimeStamp <70000){
+            case 360:
+                if (System.currentTimeMillis() - lastTimeStamp <4000){
                     armPosition7(); //the really complicated one
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 37:
-                if (System.currentTimeMillis() - lastTimeStamp <72000){
+            case 370:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition7();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 38:
-                if (System.currentTimeMillis() - lastTimeStamp <74000){
+            case 380:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 39:
-                if (System.currentTimeMillis() - lastTimeStamp <78000){
+            case 390:
+                if (System.currentTimeMillis() - lastTimeStamp <4000){
                     armPosition5();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 40:
-                if (System.currentTimeMillis() - lastTimeStamp <82000){
+            case 400:
+                if (System.currentTimeMillis() - lastTimeStamp <4000){
                     armPosition4();
                     particleShooter.moveArmToFirePosition();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 41:
-                if (System.currentTimeMillis() - lastTimeStamp <84000){
+            case 410:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 42:
-                if (System.currentTimeMillis() - lastTimeStamp <85000){
+            case 420:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition11();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 43:
-                if (System.currentTimeMillis() - lastTimeStamp <86000){
+            case 430:
+                if (System.currentTimeMillis() - lastTimeStamp <1000){
                     armPosition10();
                     particleShooter.cock();
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 44:
-                if (System.currentTimeMillis() - lastTimeStamp <90000){
+            case 440:
+                if (System.currentTimeMillis() - lastTimeStamp <4000){
                     armPosition7(); //the really complicated one
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                     elevatorPosition = robot.motorRightArm.getCurrentPosition();
                 }
                 break;
-            case 45:
-                if (System.currentTimeMillis() - lastTimeStamp <92000){
+            case 450:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0();
                     if (Math.abs(robot.motorRightArm.getCurrentPosition() - elevatorPosition) < fireworkPosition) {
                         robot.motorRightArm.setPower(0.2);
@@ -497,11 +542,12 @@ public class Dance2AutoOp extends VortexAutoOp {
                         robot.motorRightArm.setPower(0.0);
                     }
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 46:
-                if (System.currentTimeMillis() - lastTimeStamp <94000){
+            case 460:
+                if (System.currentTimeMillis() - lastTimeStamp <2000){
                     armPosition0(); //extend forklift & pop confetti
                     if (Math.abs(robot.motorRightArm.getCurrentPosition() - elevatorPosition) < fireworkPosition) {
                         robot.motorRightArm.setPower(0.2);
@@ -509,10 +555,11 @@ public class Dance2AutoOp extends VortexAutoOp {
                         robot.motorRightArm.setPower(0.0);
                     }
                 } else{
-                    state++;
+                    state+=10;
+                    dancePatternReset();
                 }
                 break;
-            case 47:
+            case 470:
                 state = particleShooter.loop(state, state + 1);
                 break;
             default:
