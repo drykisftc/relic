@@ -150,10 +150,10 @@ class VortexTeleOp extends OpMode{
 
     // right arm control information
     HardwareBeaconArm rightBeaconArm = null;
-    protected double rightUpHomePosition = 0.1;
+    protected double rightUpHomePosition = 0.00;
     protected double rightUpStepSize = 0.025;
     protected double rightLowHomePosition = 0.01;
-    protected double rightLowStepSize = 0.08;
+    protected double rightLowStepSize = 0.03;
     /* Important: use the core device discovery tool to set color sensor address to 0x48
     Then, use the 7 bit version of it 0x24
      */
