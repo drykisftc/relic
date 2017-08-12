@@ -148,6 +148,10 @@ public class Dance2AutoOp extends VortexAutoOp {
         telemetry.addData("State:", "%02d", state);
         telemetry.addData("DanceState:", "%02d", danceState);
         telemetry.addData("Current Time: ", "%02d", System.currentTimeMillis() - lastTimeStamp);
+        dance();
+    }
+
+    private void dance(){
         switch (state) {
             case 0:
                 if (System.currentTimeMillis() - lastTimeStamp < 4000) {
@@ -205,7 +209,7 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 60:
                 if (System.currentTimeMillis() - lastTimeStamp < 1000){
                     armPosition4();
-            } else{
+                } else{
                     state+=10;
                     dancePatternReset();
                 }
