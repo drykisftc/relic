@@ -178,14 +178,18 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 3:
                 if (System.currentTimeMillis() - lastTimeStamp < 12000){
                     armPosition2();
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else {
+                    wheelState =0;
                     state ++;
                 }
                 break;
             case 4:
                 if (System.currentTimeMillis() - lastTimeStamp < 16000){
                     armPosition3();
+                    if (wheelState ==0) wheelTurn(0.0, 180);
                 } else {
+                    wheelState =0;
                     state++;
                 }
                 break;
@@ -199,21 +203,27 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 6:
                 if (System.currentTimeMillis() - lastTimeStamp < 19000){
                     armPosition4();
+                    if (wheelState ==0) wheelTurn(0.0, 45);
             } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 7:
                 if (System.currentTimeMillis() - lastTimeStamp <20000){
                     armPosition6();
+                    if (wheelState ==0) wheelTurn(0.0, 90);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 8:
                 if (System.currentTimeMillis() - lastTimeStamp < 22000){
                     armPosition7();
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
@@ -295,49 +305,63 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 18:
                 if (System.currentTimeMillis() - lastTimeStamp <41000){
                     armPosition11();
+                    if (wheelState ==0) wheelTurn(0.0, 180);
                 } else{
+                    wheelState = 0;
                     state++;
                 }
                 break;
             case 19:
                 if (System.currentTimeMillis() - lastTimeStamp <42000){
                     armPosition10();
+                    if (wheelState ==0) wheelTurn(0.0, 90);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 20:
                 if (System.currentTimeMillis() - lastTimeStamp <43000){
                     armPosition4();
+                    if (wheelState ==0) wheelTurn(0.0, 45);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 21:
                 if (System.currentTimeMillis() - lastTimeStamp <44000){
                     armPosition6();
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 22:
                 if (System.currentTimeMillis() - lastTimeStamp <45000){
                     armPosition5();
+                    if (wheelState ==0) wheelTurn(0.0, -45);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 23:
                 if (System.currentTimeMillis() - lastTimeStamp <46000){
                     armPosition0();
+                    if (wheelState ==0) wheelTurn(0.0, -90);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 24:
                 if (System.currentTimeMillis() - lastTimeStamp <47000){
+                    if (wheelState ==0) wheelTurn(0.0, -179);
                     armPosition4();
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
@@ -351,14 +375,18 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 26:
                 if (System.currentTimeMillis() - lastTimeStamp <49000){
                     armPosition1();
+                    if (wheelState ==0) wheelTurn(0.0, -90);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 27:
                 if (System.currentTimeMillis() - lastTimeStamp <50000){
                     armPosition7();
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
+                    wheelState = 0;
                     state++;
                 }
                 break;
@@ -397,28 +425,36 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 32:
                 if (System.currentTimeMillis() - lastTimeStamp <60000){
                     armPosition0();
+                    if (wheelState ==0) wheelTurn(0.0, 45);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 33:
                 if (System.currentTimeMillis() - lastTimeStamp <62000){
                     armPosition1(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 90);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 34:
                 if (System.currentTimeMillis() - lastTimeStamp <64000){
                     armPosition0();
+                    if (wheelState ==0) wheelTurn(0.0, 45);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 35:
                 if (System.currentTimeMillis() - lastTimeStamp <66000){
                     armPosition1(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
