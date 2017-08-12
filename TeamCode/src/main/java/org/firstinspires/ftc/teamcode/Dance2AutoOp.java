@@ -49,7 +49,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Dance2:", group="Dance2")
+@Autonomous(name="DanceClap:", group="Dance2")
 public class Dance2AutoOp extends VortexAutoOp {
 
     protected int headPositionA = 2500;
@@ -60,7 +60,9 @@ public class Dance2AutoOp extends VortexAutoOp {
     double headPower = 0.4;
     double armSpeed = 2.0;
     long lastTimeStamp;
-
+    int wheelState  =0;
+    int elevatorPosition = 0;
+    int fireworkPosition = 1000;
 
     @Override
     public void start() {
@@ -69,6 +71,7 @@ public class Dance2AutoOp extends VortexAutoOp {
         lastTimeStamp = System.currentTimeMillis();
         danceState = 0;
         state = 0;
+        wheelState = 0;
 
     }
 
@@ -149,25 +152,26 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 0:
                 if (System.currentTimeMillis() - lastTimeStamp < 4000) {
                     armPosition0();
-                    //gyroTracker.turn(50)
+                    if (wheelState ==0) wheelTurn(0.0, 180);
                 } else {
-                    //state ++;
+                    state ++;
                 }
                 break;
             case 1:
                 if (System.currentTimeMillis() - lastTimeStamp < 6000) {
                     armPosition0();
-                    wheelTurn(0.5, 180);
-                    //gyroTracker.goStraight() // meters
+                    if (wheelState ==0) wheelTurn(0.0, 180);
                 } else {
+                    wheelState =0;
                     state ++ ;
                 }
                 break;
             case 2:
                 if (System.currentTimeMillis() - lastTimeStamp < 8000){
                     armPosition1();
-                    wheelMove(0.5, 3000);
+                    if (wheelState ==0) wheelMove(0.5, 300);
                 } else {
+                    wheelState =0;
                     state ++ ;
                 }
                 break;
@@ -216,48 +220,54 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 9:
                 if (System.currentTimeMillis() - lastTimeStamp <24000){
                     armPosition6();
-                    wheelMove(0.5, 3000);
+                    if (wheelState ==0) wheelMove(0.5, 300);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 10:
                 if (System.currentTimeMillis() - lastTimeStamp <26000){
                     armPosition0();
-                    wheelMove(0.5, -3000);
+                    if (wheelState ==0) wheelMove(0.5, -300);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 11:
                 if (System.currentTimeMillis() - lastTimeStamp <28000){
                     armPosition0();
-                    wheelTurn(0.4, 275);
+                    if (wheelState ==0) wheelTurn(0.0, 275);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 12:
                 if (System.currentTimeMillis() - lastTimeStamp <32000){
                     armPosition0();
-                    wheelTurn(0.4, 0);
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 13:
                 if (System.currentTimeMillis() - lastTimeStamp <34000){
                     armPosition1(); //the complicated one
-                    wheelTurn(0.4, 180);
+                    if (wheelState ==0) wheelTurn(0.0, 180);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 14:
                 if (System.currentTimeMillis() - lastTimeStamp <36000){
                     armPosition0();
-                    wheelTurn(0.4, 0);
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
@@ -362,16 +372,18 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 29:
                 if (System.currentTimeMillis() - lastTimeStamp <54000){
                     armPosition1();
-                    wheelMove(0.5, -3000);
+                    if (wheelState ==0) wheelMove(0.5, -300);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
             case 30:
                 if (System.currentTimeMillis() - lastTimeStamp <56000){
                     armPosition0();
-                    wheelMove(0.5, 3000);
+                    if (wheelState ==0) wheelMove(0.5, 300);
                 } else{
+                    wheelState =0;
                     state++;
                 }
                 break;
@@ -441,6 +453,7 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 40:
                 if (System.currentTimeMillis() - lastTimeStamp <82000){
                     armPosition4();
+                    particleShooter.moveArmToFirePosition();
                 } else{
                     state++;
                 }
@@ -462,6 +475,7 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 43:
                 if (System.currentTimeMillis() - lastTimeStamp <86000){
                     armPosition10();
+                    particleShooter.cock();
                 } else{
                     state++;
                 }
@@ -471,11 +485,17 @@ public class Dance2AutoOp extends VortexAutoOp {
                     armPosition7(); //the really complicated one
                 } else{
                     state++;
+                    elevatorPosition = robot.motorRightArm.getCurrentPosition();
                 }
                 break;
             case 45:
                 if (System.currentTimeMillis() - lastTimeStamp <92000){
                     armPosition0();
+                    if (Math.abs(robot.motorRightArm.getCurrentPosition() - elevatorPosition) < fireworkPosition) {
+                        robot.motorRightArm.setPower(0.2);
+                    } else {
+                        robot.motorRightArm.setPower(0.0);
+                    }
                 } else{
                     state++;
                 }
@@ -483,28 +503,37 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 46:
                 if (System.currentTimeMillis() - lastTimeStamp <94000){
                     armPosition0(); //extend forklift & pop confetti
+                    if (Math.abs(robot.motorRightArm.getCurrentPosition() - elevatorPosition) < fireworkPosition) {
+                        robot.motorRightArm.setPower(0.2);
+                    } else {
+                        robot.motorRightArm.setPower(0.0);
+                    }
                 } else{
                     state++;
                 }
                 break;
+            case 47:
+                state = particleShooter.loop(state, state + 1);
+                break;
             default:
                 dancePatternReset();
+                robot.motorRightArm.setPower(0.0);
+                robot.motorLeftWheel.setPower(0.0);
+                robot.motorRightWheel.setPower(0.0);
+                robot.motorLeftArm.setPower(0.0);
+                robot.motorLeftHand.setPower(0.0);
                 //state = 0; // repeat
                 break;
         }
-        lastTimeStamp = System.currentTimeMillis();
     }
 
     // wheel dance modes
     public void wheelMove(double power, int distance) {
-        gyroTracker.goStraight (0, cruisingTurnGain, power,
-                distance, 0,1);
+        wheelState = gyroTracker.goStraight (0, cruisingTurnGain, power, distance, 0,1);
     }
 
     public void wheelTurn(double turnPower, int heading) {
-        gyroTracker.minTurnPower = 0.15;
-        state = gyroTracker.turn(heading,
-                inPlaceTurnGain,turnPower,0,0);
+        wheelState = gyroTracker.turn(heading, inPlaceTurnGain,turnPower,0,1);
     }
 
     // head dance mode

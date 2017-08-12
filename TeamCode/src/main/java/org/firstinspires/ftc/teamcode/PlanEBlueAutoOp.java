@@ -35,6 +35,7 @@ package org.firstinspires.ftc.teamcode;
 import android.media.Image;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * This file provides basic Telop driving for a Pushbot robot.
@@ -52,6 +53,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  */
 
 @Autonomous(name="Plan E: Blue", group="Plan E")
+@Disabled
 public class PlanEBlueAutoOp extends PlanERedAutoOp{
 
 
