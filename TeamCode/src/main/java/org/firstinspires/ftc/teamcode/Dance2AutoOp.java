@@ -62,7 +62,7 @@ public class Dance2AutoOp extends VortexAutoOp {
     long lastTimeStamp;
     int wheelState  =0;
     int elevatorPosition = 0;
-    int fireworkPosition = 1000;
+    int fireworkPosition = 4000;
 
     @Override
     public void start() {
@@ -96,7 +96,7 @@ public class Dance2AutoOp extends VortexAutoOp {
     }
 
     protected void armPosition3() {
-        leftBeaconArm.setPosition(0.0, 0.0);
+        leftBeaconArm.setPosition(0.2, 0.0);
         rightBeaconArm.setPosition(0.375, 1.0);
     }
 
@@ -116,12 +116,12 @@ public class Dance2AutoOp extends VortexAutoOp {
     }
 
     protected void armPosition7() {
-        leftBeaconArm.setPosition(0.0, 0.0);
+        leftBeaconArm.setPosition(0.2, 0.0);
         rightBeaconArm.setPosition(1.0, 1.0);
     }
 
     protected void armPosition8() {
-        leftBeaconArm.setPosition(0.0, 0.0);
+        leftBeaconArm.setPosition(0.2, 0.0);
         rightBeaconArm.setPosition(rightUpHomePosition, rightLowHomePosition);
     }
 
@@ -152,403 +152,581 @@ public class Dance2AutoOp extends VortexAutoOp {
             case 0:
                 if (System.currentTimeMillis() - lastTimeStamp < 4000) {
                     armPosition0();
-                    if (wheelState ==0) wheelTurn(0.0, 180);
                 } else {
-                    state ++;
+                    state+=100;
                 }
                 break;
-            case 1:
+            case 100:
                 if (System.currentTimeMillis() - lastTimeStamp < 6000) {
                     armPosition0();
-                    if (wheelState ==0) wheelTurn(0.0, 180);
+                    if (wheelState ==0) wheelTurn(0.0, 175);
                 } else {
                     wheelState =0;
-                    state ++ ;
+                    state+=100 ;
                 }
                 break;
-            case 2:
+            case 200:
                 if (System.currentTimeMillis() - lastTimeStamp < 8000){
                     armPosition1();
                     if (wheelState ==0) wheelMove(0.5, 300);
                 } else {
                     wheelState =0;
-                    state ++ ;
+                    state+=100 ;
                 }
                 break;
-            case 3:
+            case 300:
                 if (System.currentTimeMillis() - lastTimeStamp < 12000){
                     armPosition2();
                     if (wheelState ==0) wheelTurn(0.0, 0);
                 } else {
                     wheelState =0;
-                    state ++;
+                    state+=100;
                 }
                 break;
-            case 4:
+            case 400:
                 if (System.currentTimeMillis() - lastTimeStamp < 16000){
                     armPosition3();
-                    if (wheelState ==0) wheelTurn(0.0, 180);
+                    if (wheelState ==0) wheelTurn(0.0, 175);
                 } else {
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 5:
-                if (System.currentTimeMillis() - lastTimeStamp < 18000){
+            case 500:
+                if (System.currentTimeMillis() - lastTimeStamp < 17500){
                     armPosition0();
                 }else {
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 6:
+            case 600:
                 if (System.currentTimeMillis() - lastTimeStamp < 19000){
                     armPosition4();
-                    if (wheelState ==0) wheelTurn(0.0, 45);
+                    if (wheelState ==0) wheelTurn(0.0, 135);
             } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 7:
+            case 700:
                 if (System.currentTimeMillis() - lastTimeStamp <20000){
                     armPosition6();
                     if (wheelState ==0) wheelTurn(0.0, 90);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 8:
+            case 800:
                 if (System.currentTimeMillis() - lastTimeStamp < 22000){
                     armPosition7();
-                    if (wheelState ==0) wheelTurn(0.0, 0);
+                    if (wheelState ==0) wheelTurn(0.0, 175);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 9:
+            case 900:
                 if (System.currentTimeMillis() - lastTimeStamp <24000){
                     armPosition6();
                     if (wheelState ==0) wheelMove(0.5, 300);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 10:
+            case 1000:
                 if (System.currentTimeMillis() - lastTimeStamp <26000){
                     armPosition0();
                     if (wheelState ==0) wheelMove(0.5, -300);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 11:
+            case 1100:
                 if (System.currentTimeMillis() - lastTimeStamp <28000){
                     armPosition0();
-                    if (wheelState ==0) wheelTurn(0.0, 275);
+                    if (wheelState ==0) wheelTurn(0.0, -135);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 12:
+            case 1200:
                 if (System.currentTimeMillis() - lastTimeStamp <32000){
                     armPosition0();
-                    if (wheelState ==0) wheelTurn(0.0, 0);
+                    if (wheelState ==0) wheelTurn(0.0, 175);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 13:
+            case 1300: // clapping 2 times
                 if (System.currentTimeMillis() - lastTimeStamp <34000){
                     armPosition1(); //the complicated one
-                    if (wheelState ==0) wheelTurn(0.0, 180);
+                    if (wheelState ==0) wheelTurn(0.0, 175);
                 } else{
-                    wheelState =0;
-                    state++;
+                    state+=1;
                 }
                 break;
-            case 14:
+            case 1301: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <34500){
+                    armPosition7(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 175);
+                } else{
+                    state+=1;
+                }
+                break;
+            case 1302: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <35000){
+                    armPosition1(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 175);
+                } else{
+                    state+=1;
+                }
+                break;
+            case 1303: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <35500){
+                    armPosition7(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 175);
+                } else{
+                    wheelState = 0;
+                    state=1400;
+                }
+                break;
+            case 1400:  // to do: turn 360
                 if (System.currentTimeMillis() - lastTimeStamp <36000){
                     armPosition0();
                     if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=1;
                 }
                 break;
-            case 15:
+            case 1401:  // to do: turn 360
+                if (System.currentTimeMillis() - lastTimeStamp <37000){
+                    armPosition0();
+                    if (wheelState ==0) wheelTurn(0.0, -175);
+                } else{
+                    wheelState =0;
+                    state=1500;
+                }
+                break;
+            case 1500: // clapping 2 times
                 if (System.currentTimeMillis() - lastTimeStamp <38000){
                     armPosition1(); //the complicated one
                 } else{
-                    state++;
+                    state+=1;
                 }
                 break;
-            case 16:
+            case 1501: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <38500){
+                    armPosition7(); //the complicated one
+                } else{
+                    state+=1;
+                }
+                break;
+            case 1502: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <39000){
+                    armPosition1(); //the complicated one
+                } else{
+                    state+=1;
+                }
+                break;
+            case 1503: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <39500){
+                    armPosition7(); //the complicated one
+                } else{
+                    state=1600;
+                }
+                break;
+            case 1600:
                 if (System.currentTimeMillis() - lastTimeStamp <39000){
                     armPosition9();
                 } else{
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 17:
-                if (System.currentTimeMillis() - lastTimeStamp <4000){
+            case 1700:
+                if (System.currentTimeMillis() - lastTimeStamp <40000){
                     armPosition8();
                 } else{
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 18:
+            case 1800:
                 if (System.currentTimeMillis() - lastTimeStamp <41000){
                     armPosition11();
-                    if (wheelState ==0) wheelTurn(0.0, 180);
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
                     wheelState = 0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 19:
+            case 1900:
                 if (System.currentTimeMillis() - lastTimeStamp <42000){
                     armPosition10();
-                    if (wheelState ==0) wheelTurn(0.0, 90);
+                    if (wheelState ==0) wheelTurn(0.0, 175);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 20:
+            case 2000:
                 if (System.currentTimeMillis() - lastTimeStamp <43000){
                     armPosition4();
                     if (wheelState ==0) wheelTurn(0.0, 45);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 21:
+            case 2100:
                 if (System.currentTimeMillis() - lastTimeStamp <44000){
                     armPosition6();
                     if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 22:
+            case 2200:
                 if (System.currentTimeMillis() - lastTimeStamp <45000){
                     armPosition5();
                     if (wheelState ==0) wheelTurn(0.0, -45);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 23:
+            case 2300:
                 if (System.currentTimeMillis() - lastTimeStamp <46000){
                     armPosition0();
                     if (wheelState ==0) wheelTurn(0.0, -90);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 24:
+            case 2400:
                 if (System.currentTimeMillis() - lastTimeStamp <47000){
                     if (wheelState ==0) wheelTurn(0.0, -179);
                     armPosition4();
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 25:
+            case 2500:
                 if (System.currentTimeMillis() - lastTimeStamp <48000){
                     armPosition6();
                 } else{
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 26:
+            case 2600:
                 if (System.currentTimeMillis() - lastTimeStamp <49000){
                     armPosition1();
                     if (wheelState ==0) wheelTurn(0.0, -90);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 27:
+            case 2700:
                 if (System.currentTimeMillis() - lastTimeStamp <50000){
                     armPosition7();
                     if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
                     wheelState = 0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 28:
+            case 2800: // turn 360
                 if (System.currentTimeMillis() - lastTimeStamp <52000){
                     armPosition0();
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
-                    state++;
+                    state+=1;
                 }
                 break;
-            case 29:
+            case 2801: // turn 360
+                if (System.currentTimeMillis() - lastTimeStamp <53000){
+                    armPosition0();
+                    if (wheelState ==0) wheelTurn(0.0, -179);
+                } else{
+                    state=2900;
+                }
+                break;
+            case 2900:
                 if (System.currentTimeMillis() - lastTimeStamp <54000){
                     armPosition1();
                     if (wheelState ==0) wheelMove(0.5, -300);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 30:
+            case 3000:
                 if (System.currentTimeMillis() - lastTimeStamp <56000){
                     armPosition0();
                     if (wheelState ==0) wheelMove(0.5, 300);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 31:
+            case 3100:
                 if (System.currentTimeMillis() - lastTimeStamp <58000){
+                    if (wheelState ==0) wheelTurn(0.0, 135);
                     armPosition0();
                 } else{
-                    state++;
+                    wheelState = 0;
+                    state+=100;
                 }
                 break;
-            case 32:
+            case 3200:
                 if (System.currentTimeMillis() - lastTimeStamp <60000){
                     armPosition0();
-                    if (wheelState ==0) wheelTurn(0.0, 45);
+                    if (wheelState ==0) wheelTurn(0.0, 175);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 33:
+            case 3300: // clapping 2 times
                 if (System.currentTimeMillis() - lastTimeStamp <62000){
                     armPosition1(); //the complicated one
                     if (wheelState ==0) wheelTurn(0.0, 90);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=1;
                 }
                 break;
-            case 34:
+            case 3301: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <62500){
+                    armPosition7(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 90);
+                } else{
+                    wheelState =0;
+                    state+=1;
+                }
+                break;
+            case 3302: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <63000){
+                    armPosition1(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 90);
+                } else{
+                    wheelState =0;
+                    state+=1;
+                }
+                break;
+            case 3303: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <63500){
+                    armPosition7(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 90);
+                } else{
+                    wheelState =0;
+                    state=3400;
+                }
+                break;
+            case 3400: // turn 360
                 if (System.currentTimeMillis() - lastTimeStamp <64000){
                     armPosition0();
                     if (wheelState ==0) wheelTurn(0.0, 45);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=1;
                 }
                 break;
-            case 35:
+            case 3401: // turn 360
+                if (System.currentTimeMillis() - lastTimeStamp <65000){
+                    armPosition0();
+                    if (wheelState ==0) wheelTurn(0.0, -45);
+                } else{
+                    wheelState =0;
+                    state=3500;
+                }
+                break;
+            case 3500: // clapping 2 times
                 if (System.currentTimeMillis() - lastTimeStamp <66000){
+                    armPosition7(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 0);
+                } else{
+                    wheelState =0;
+                    state+=1;
+                }
+                break;
+            case 3501: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <66500){
                     armPosition1(); //the complicated one
                     if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
                     wheelState =0;
-                    state++;
+                    state+=1;
                 }
                 break;
-            case 36:
+            case 3502: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <67000){
+                    armPosition7(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 0);
+                } else{
+                    wheelState =0;
+                    state+=1;
+                }
+                break;
+            case 3503: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <67500){
+                    armPosition1(); //the complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 0);
+                } else{
+                    wheelState =0;
+                    state=3600;
+                }
+                break;
+            case 3600: // turn 360
                 if (System.currentTimeMillis() - lastTimeStamp <70000){
                     armPosition7(); //the really complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 45);
                 } else{
-                    state++;
+                    wheelState =0;
+                    state+=1;
                 }
                 break;
-            case 37:
+            case 3601: // turn 360
+                if (System.currentTimeMillis() - lastTimeStamp <71000){
+                    armPosition7(); //the really complicated one
+                    if (wheelState ==0) wheelTurn(0.0, -45);
+                } else{
+                    wheelState =0;
+                    state=3700;
+                }
+                break;
+            case 3700: // turn360 right
                 if (System.currentTimeMillis() - lastTimeStamp <72000){
-                    armPosition7();
+                    if (wheelState ==0) wheelTurn(0.0, -90);
+                    armPosition6();
                 } else{
-                    state++;
+                    wheelState =0;
+                    state+=100;
                 }
                 break;
-            case 38:
+            case 3800: // turn 360 left
                 if (System.currentTimeMillis() - lastTimeStamp <74000){
                     armPosition0();
+                    if (wheelState ==0) wheelTurn(0.0, -45);
                 } else{
-                    state++;
+                    wheelState= 0;
+                    state+=100;
                 }
                 break;
-            case 39:
+            case 3900: // turn 360 right
                 if (System.currentTimeMillis() - lastTimeStamp <78000){
-                    armPosition5();
+                    armPosition2();
+                    if (wheelState ==0) wheelTurn(0.0, 0);
                 } else{
-                    state++;
+                    wheelState =0;
+                    state+=100;
                 }
                 break;
-            case 40:
+            case 4000: // turn 360 left
                 if (System.currentTimeMillis() - lastTimeStamp <82000){
-                    armPosition4();
+                    armPosition3();
                     particleShooter.moveArmToFirePosition();
+                    if (wheelState ==0) wheelTurn(0.0, 45);
                 } else{
-                    state++;
+                    wheelState =0;
+                    state+=100;
                 }
                 break;
-            case 41:
+            case 4100:
                 if (System.currentTimeMillis() - lastTimeStamp <84000){
                     armPosition0();
                 } else{
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 42:
+            case 4200:
                 if (System.currentTimeMillis() - lastTimeStamp <85000){
                     armPosition11();
+                    if (wheelState ==0) wheelMove(0.5, 300);
                 } else{
-                    state++;
+                    wheelState = 0;
+                    state+=100;
                 }
                 break;
-            case 43:
+            case 4300:
                 if (System.currentTimeMillis() - lastTimeStamp <86000){
                     armPosition10();
                     particleShooter.cock();
+                    if (wheelState ==0) wheelMove(0.5, -300);
                 } else{
-                    state++;
+                    wheelState =0;
+                    state+=100;
                 }
                 break;
-            case 44:
+            case 4400: // clapping 2 times
                 if (System.currentTimeMillis() - lastTimeStamp <90000){
-                    armPosition7(); //the really complicated one
+                    armPosition1(); //the really complicated one
+                    if (wheelState ==0) wheelTurn(0.0, 180);
                 } else{
-                    state++;
+                    state+=1;
                     elevatorPosition = robot.motorRightArm.getCurrentPosition();
                 }
                 break;
-            case 45:
+            case 4401: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <90500){
+                    armPosition7(); //the really complicated one
+                } else{
+                    state+=1;
+                    elevatorPosition = robot.motorRightArm.getCurrentPosition();
+                }
+                break;
+            case 4402: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <91000){
+                    armPosition1(); //the really complicated one
+                } else{
+                    state+=1;
+                    elevatorPosition = robot.motorRightArm.getCurrentPosition();
+                }
+                break;
+            case 4403: // clapping 2 times
+                if (System.currentTimeMillis() - lastTimeStamp <91500){
+                    armPosition7(); //the really complicated one
+                } else{
+                    state=4500;
+                    wheelState =0;
+                    elevatorPosition = robot.motorRightArm.getCurrentPosition();
+                }
+                break;
+            case 4500:
                 if (System.currentTimeMillis() - lastTimeStamp <92000){
                     armPosition0();
+                    if (wheelState ==0) wheelMove(0.5, 300);
                     if (Math.abs(robot.motorRightArm.getCurrentPosition() - elevatorPosition) < fireworkPosition) {
-                        robot.motorRightArm.setPower(0.2);
+                        robot.motorRightArm.setPower(0.3);
                     } else {
                         robot.motorRightArm.setPower(0.0);
                     }
                 } else{
-                    state++;
+                    wheelState =0;
+                    state+=100;
                 }
                 break;
-            case 46:
+            case 4600:
                 if (System.currentTimeMillis() - lastTimeStamp <94000){
                     armPosition0(); //extend forklift & pop confetti
                     if (Math.abs(robot.motorRightArm.getCurrentPosition() - elevatorPosition) < fireworkPosition) {
-                        robot.motorRightArm.setPower(0.2);
+                        robot.motorRightArm.setPower(0.3);
                     } else {
                         robot.motorRightArm.setPower(0.0);
                     }
                 } else{
-                    state++;
+                    state+=100;
                 }
                 break;
-            case 47:
+            case 4700:
                 state = particleShooter.loop(state, state + 1);
                 break;
             default:
