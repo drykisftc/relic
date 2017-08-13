@@ -1,10 +1,14 @@
 [
     {
-        "merged": "/Users/hfu/SRC/relic/FtcRobotController/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/ic_launcher.png",
-        "source": "/Users/hfu/SRC/relic/FtcRobotController/build/intermediates/bundles/debug/res/drawable-mdpi-v4/ic_launcher.png"
+        "merged": "C:\\Users\\chuny\\AndroidStudioProjects\\relic\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\chuny\\AndroidStudioProjects\\relic\\FtcRobotController\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
     },
     {
-        "merged": "/Users/hfu/SRC/ftc_app/FtcRobotController/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/ic_launcher.png",
-        "source": "/Users/hfu/SRC/ftc_app/FtcRobotController/build/intermediates/bundles/debug/res/drawable-mdpi-v4/ic_launcher.png"
+        "merged": "C:\\Users\\hfu\\SRC\\ftc_app\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\hfu\\SRC\\ftc_app\\FtcRobotController\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\hfu\\SRC\\relic\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\hfu\\SRC\\relic\\FtcRobotController\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
     }
 ]
