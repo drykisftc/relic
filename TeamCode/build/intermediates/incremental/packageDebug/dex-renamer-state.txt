@@ -1,7 +1,0 @@
-#Sun Aug 06 16:08:13 PDT 2017
-base.0=/Users/hfu/SRC/relic/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_3fc32f0cddf2c373695236fb5351cfefe987b2ae
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/Users/hfu/SRC/relic/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ccbce3aff739947166615214f7ddf919cddd70cc/classes.dex
-base.1=/Users/hfu/SRC/relic/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ccbce3aff739947166615214f7ddf919cddd70cc
-file.0=/Users/hfu/SRC/relic/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_3fc32f0cddf2c373695236fb5351cfefe987b2ae/classes.dex
