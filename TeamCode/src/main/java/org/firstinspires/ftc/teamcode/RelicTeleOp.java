@@ -141,7 +141,7 @@ public class RelicTeleOp extends OpMode{
 
     public void joystickWheelControl() {
 
-        // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
+        // Mecanum wheel driving system (note: The joystick goes negative when pushed forwards, so negate it)
         float direction = gamepad1.right_stick_x;
         float parallel = gamepad1.left_stick_x;
         float diagonal = gamepad1.left_stick_y;
