@@ -109,10 +109,10 @@ public class VortexMeasureOp extends VortexTeleOp {
 
         gyroTracker.gyro.resetZAxisIntegrator();
 
-        robot.motorLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorRightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorLeftWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorRightWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorRightBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorRightBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         robot.motorLeftArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.motorRightArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -131,8 +131,8 @@ public class VortexMeasureOp extends VortexTeleOp {
     public void loop() {
 
         // get wheel info
-        telemetry.addData("Left wheel pos ", "%6d", robot.motorLeftWheel.getCurrentPosition());
-        telemetry.addData("right wheel pos", "%6d", robot.motorRightWheel.getCurrentPosition());
+        telemetry.addData("Left wheel pos ", "%6d", robot.motorLeftBackWheel.getCurrentPosition());
+        telemetry.addData("right wheel pos", "%6d", robot.motorRightBackWheel.getCurrentPosition());
 
         // get arm info
         telemetry.addData("left arm pos  ", "%6d", robot.motorLeftArm.getCurrentPosition());

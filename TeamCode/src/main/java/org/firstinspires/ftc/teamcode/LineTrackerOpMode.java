@@ -30,19 +30,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
-
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
-import java.nio.Buffer;
 
 
 /**
@@ -78,8 +67,8 @@ public class LineTrackerOpMode extends OpMode {
         lineTracker = new LineTracker(tracker.sensorArray[0],
                 tracker.sensorArray[1],
                 tracker.sensorArray[2],
-                vortexHW.motorLeftWheel,
-                vortexHW.motorRightWheel,
+                vortexHW.motorLeftBackWheel,
+                vortexHW.motorRightBackWheel,
                 bufferSize);
         lineTracker.init();
         lineTracker.setReporter(telemetry);

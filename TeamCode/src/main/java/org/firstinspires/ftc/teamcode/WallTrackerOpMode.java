@@ -32,7 +32,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 /**
  *
@@ -64,8 +63,8 @@ public class WallTrackerOpMode extends VortexTeleOp {
         walTrackerHW.init(hardwareMap);
 
         wallTracker = new WallTracker(walTrackerHW,
-                robot.motorLeftWheel,
-                robot.motorRightWheel,
+                robot.motorLeftBackWheel,
+                robot.motorRightBackWheel,
                 bufferSize);
         wallTracker.init();
         wallTracker.setReporter(telemetry);

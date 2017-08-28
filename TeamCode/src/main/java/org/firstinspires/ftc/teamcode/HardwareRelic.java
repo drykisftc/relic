@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
@@ -27,28 +27,16 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
  *
  * In addition, the Matrix Controller has been assigned the name:  "matrix controller"
  */
-public class HardwareVortex extends HardwareBase
+public class HardwareRelic extends HardwareBase
 {
     // DC Motors
-    public DcMotor motorLeftArm = null;
-    public DcMotor motorRightArm = null;
     public DcMotor motorLeftBackWheel = null;
     public DcMotor motorRightBackWheel =null;
     public DcMotor motorLeftFrontWheel = null;
     public DcMotor motorRightFrontWheel =null;
-    public DcMotor motorLeftHand = null;
-    public DcMotor motorRightHand = null;
-
-    // Servos
-    public Servo servoCock = null;
-
-    // Sensors
-    public TouchSensor armStop = null;
-
-    // Camera
 
     /* Constructor */
-    public HardwareVortex(){
+    public HardwareRelic(){
 
     }
 
@@ -74,29 +62,6 @@ public class HardwareVortex extends HardwareBase
         motorRightFrontWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorLeftFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorRightFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        motorLeftArm   = hwMap.dcMotor.get("leftArm");
-        motorRightArm  = hwMap.dcMotor.get("rightArm");
-        motorLeftArm.setDirection(DcMotor.Direction.FORWARD);
-        motorRightArm.setDirection(DcMotor.Direction.REVERSE);
-        motorLeftArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorRightArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorLeftArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorRightArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        motorLeftHand   = hwMap.dcMotor.get("leftHand");
-        motorRightHand  = hwMap.dcMotor.get("rightHand");
-        motorLeftHand.setDirection(DcMotor.Direction.FORWARD);
-        motorRightHand.setDirection(DcMotor.Direction.FORWARD);
-        motorLeftHand.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorRightHand.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorLeftHand.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorRightHand.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        servoCock = hwMap.servo.get("cock");
-
-        armStop = hwMap.touchSensor.get("armStop");
-
     }
 
     public void stop() {
@@ -104,18 +69,12 @@ public class HardwareVortex extends HardwareBase
         motorRightBackWheel.setPower(0.0);
         motorLeftFrontWheel.setPower(0.0);
         motorRightFrontWheel.setPower(0.0);
-        motorLeftArm.setPower(0.0);
-        motorRightArm.setPower(0.0);
-        motorLeftHand.setPower(0.0);
-        motorRightHand.setPower(0.0);
+
 
         motorLeftBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorRightBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeftFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorRightFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorLeftArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorRightArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorLeftHand.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorRightHand.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
     }
 }

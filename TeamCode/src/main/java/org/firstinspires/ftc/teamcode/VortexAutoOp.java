@@ -102,8 +102,8 @@ public class VortexAutoOp extends GyroTrackerOpMode{
 
     public void initWallTracker() {
         wallTracker = new WallTracker(wallTrackerHW,
-                robot.motorLeftWheel,
-                robot.motorRightWheel, 10);
+                robot.motorLeftBackWheel,
+                robot.motorRightBackWheel, 10);
     }
 
     public void initStates () {
@@ -147,8 +147,8 @@ public class VortexAutoOp extends GyroTrackerOpMode{
                 telemetry.addData("State:", "%02d", state);
                 if (state == 1) {
                     // prepare to shoot
-                    robot.motorLeftWheel.setPower(0.0);
-                    robot.motorRightWheel.setPower(0.0);
+                    robot.motorLeftBackWheel.setPower(0.0);
+                    robot.motorRightBackWheel.setPower(0.0);
                 }
                 break;
             case 1:
@@ -243,8 +243,8 @@ public class VortexAutoOp extends GyroTrackerOpMode{
     }
 
     public void stopWheels() {
-        robot.motorLeftWheel.setPower(0.0);
-        robot.motorRightWheel.setPower(0.0);
+        robot.motorLeftBackWheel.setPower(0.0);
+        robot.motorRightBackWheel.setPower(0.0);
     }
 
     /*

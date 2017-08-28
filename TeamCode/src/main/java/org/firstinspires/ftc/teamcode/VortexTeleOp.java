@@ -52,7 +52,7 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="TeleOp: A pro", group="Run")
+@TeleOp(name="TeleOp: A Pro", group="Run")
 public class VortexTeleOp extends OpMode{
 
     /* Declare OpMode members. */
@@ -168,12 +168,12 @@ public class VortexTeleOp extends OpMode{
         robot.init(hardwareMap);
 
         // wheels
-        robot.motorLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorRightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorLeftWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorRightWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorLeftWheel.setPower(0.0);
-        robot.motorRightWheel.setPower(0.0);
+        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorRightBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorRightBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftBackWheel.setPower(0.0);
+        robot.motorRightBackWheel.setPower(0.0);
 
         // arms
         robot.motorLeftArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -240,12 +240,19 @@ public class VortexTeleOp extends OpMode{
     public void start() {
 
         // wheels
-        robot.motorLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorRightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorLeftWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorRightWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorLeftWheel.setPower(0.0);
-        robot.motorRightWheel.setPower(0.0);
+        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorRightBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorRightBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftBackWheel.setPower(0.0);
+        robot.motorRightBackWheel.setPower(0.0);
+
+        robot.motorLeftFrontWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorRightFrontWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorLeftFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorRightFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftFrontWheel.setPower(0.0);
+        robot.motorRightFrontWheel.setPower(0.0);
 
         // arms
         robot.motorLeftArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -293,14 +300,23 @@ public class VortexTeleOp extends OpMode{
         // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
         float throttle = -gamepad1.left_stick_y;
         float direction = gamepad1.left_stick_x;
+        float parallel = gamepad1.right_stick_x;
         float right = throttle - direction;
         float left = throttle + direction;
 
         // clip the right/left values so that the values never exceed +/- 1
         right = Range.clip(right, -1, 1);
         left = Range.clip(left, -1, 1);
-        robot.motorLeftWheel.setPower(left);
-        robot.motorRightWheel.setPower(right);
+        robot.motorLeftBackWheel.setPower(left);
+        robot.motorLeftFrontWheel.setPower(left);
+        robot.motorRightBackWheel.setPower(right);
+        robot.motorRightFrontWheel.setPower(right);
+
+        //Parallel movement
+        robot.motorLeftBackWheel.setPower(parallel);
+        robot.motorLeftFrontWheel.setPower(-parallel);
+        robot.motorRightBackWheel.setPower(-parallel);
+        robot.motorRightFrontWheel.setPower(parallel);
 
         // Send telemetry message to signify robot running;
         telemetry.addData("left",  "%.2f", left);

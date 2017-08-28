@@ -31,7 +31,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 
 /**
@@ -82,8 +81,8 @@ public class GyroTrackerOpMode extends VortexTeleOp {
         gyroTrackerHW.init(hardwareMap);
 
         gyroTracker = new GyroTracker(gyroTrackerHW.gyro,
-                robot.motorLeftWheel,
-                robot.motorRightWheel,
+                robot.motorLeftBackWheel,
+                robot.motorRightBackWheel,
                 bufferSize);
         gyroTracker.setReporter(telemetry);
         gyroTracker.init();

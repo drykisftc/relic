@@ -140,21 +140,28 @@ public class RelicTeleOp extends OpMode{
     }
 
     public void joystickWheelControl() {
-        // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
-        float throttle = -gamepad1.left_stick_y;
-        float direction = gamepad1.left_stick_x;
-        float parallel = gamepad1.right_stick_x;
-        float right = throttle - direction;
-        float left = throttle + direction;
 
-        if (parallel != 0) {
-            //Parallel movement
-            parallel = Range.clip(parallel, -1, 1);
-            robot.motorLeftBackWheel.setPower(-parallel);
-            robot.motorLeftFrontWheel.setPower(parallel);
-            robot.motorRightBackWheel.setPower(parallel);
-            robot.motorRightFrontWheel.setPower(-parallel);
+        // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
+        float direction = gamepad1.right_stick_x;
+        float parallel = gamepad1.left_stick_x;
+        float diagonal = gamepad1.left_stick_y;
+        float right = -direction;
+        float left = direction;
+        float diagonal1 = parallel + diagonal;
+        float diagonal2 = -parallel + diagonal;
+
+        if (parallel != 0 || diagonal != 0) {
+
+            //parallel and diagonal movement
+            diagonal1 = Range.clip(diagonal1, -1, 1);
+            diagonal2 = Range.clip(diagonal2, -1, 1);
+            robot.motorLeftBackWheel.setPower(diagonal2);
+            robot.motorLeftFrontWheel.setPower(diagonal1);
+            robot.motorRightBackWheel.setPower(diagonal2);
+            robot.motorRightFrontWheel.setPower(diagonal1);
+
         } else {
+
             // clip the right/left values so that the values never exceed +/- 1
             right = Range.clip(right, -1, 1);
             left = Range.clip(left, -1, 1);
@@ -162,8 +169,9 @@ public class RelicTeleOp extends OpMode{
             robot.motorLeftFrontWheel.setPower(-left);
             robot.motorRightBackWheel.setPower(-right);
             robot.motorRightFrontWheel.setPower(-right);
+
         }
-        
+
 
         // Send telemetry message to signify robot running;
         telemetry.addData("left",  "%.2f", left);
