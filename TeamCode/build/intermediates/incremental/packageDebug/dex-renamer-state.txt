@@ -1,4 +1,0 @@
-#Thu Nov 17 20:06:42 PST 2016
-base.0=/Users/hfu/SRC/ftc_app/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/1f/main
-renamed.0=classes.dex
-file.0=/Users/hfu/SRC/ftc_app/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
