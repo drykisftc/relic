@@ -52,11 +52,11 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="TeleOp: A Pro Relic", group="Run")
-public class RelicTeleOp extends OpMode{
+@TeleOp(name="TeleOp: A Pro Nathen", group="Run")
+public class NathenTeleOp extends OpMode{
 
     /* Declare OpMode members. */
-    protected HardwareRelic robot = new HardwareRelic();
+    protected HardwareNathen robot = new HardwareNathen();
 
 
 
@@ -79,12 +79,12 @@ public class RelicTeleOp extends OpMode{
         robot.init(hardwareMap);
 
         // wheels
-        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorRightBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorRightBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorLeftBackWheel.setPower(0.0);
-        robot.motorRightBackWheel.setPower(0.0);
+        robot.motorLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorRightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorLeftWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorRightWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftWheel.setPower(0.0);
+        robot.motorRightWheel.setPower(0.0);
 
 
 
@@ -110,19 +110,12 @@ public class RelicTeleOp extends OpMode{
     public void start() {
 
         // wheels
-        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorRightBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorLeftBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorRightBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorLeftBackWheel.setPower(0.0);
-        robot.motorRightBackWheel.setPower(0.0);
-
-        robot.motorLeftFrontWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorRightFrontWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.motorLeftFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorRightFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.motorLeftFrontWheel.setPower(0.0);
-        robot.motorRightFrontWheel.setPower(0.0);
+        robot.motorLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorRightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorLeftWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorRightWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.motorLeftWheel.setPower(0.0);
+        robot.motorRightWheel.setPower(0.0);
 
 
 
@@ -142,35 +135,17 @@ public class RelicTeleOp extends OpMode{
     public void joystickWheelControl() {
 
         // Mecanum wheel driving system (note: The joystick goes negative when pushed forwards, so negate it)
-        float direction = gamepad1.right_stick_x;
-        float parallel = -gamepad1.left_stick_x;
-        float diagonal = gamepad1.left_stick_y;
-        float right = -direction;
-        float left = direction;
-        float diagonal1 = parallel + diagonal;
-        float diagonal2 = -parallel + diagonal;
+        float throttle = -gamepad1.left_stick_y;
+        float direction = gamepad1.left_stick_x;
+        float right = throttle - direction;
+        float left = throttle + direction;
 
-        if (parallel != 0 || diagonal != 0) {
 
-            //parallel and diagonal movement
-            diagonal1 = Range.clip(diagonal1, -1, 1);
-            diagonal2 = Range.clip(diagonal2, -1, 1);
-            robot.motorLeftBackWheel.setPower(diagonal2);
-            robot.motorLeftFrontWheel.setPower(diagonal1);
-            robot.motorRightBackWheel.setPower(diagonal1);
-            robot.motorRightFrontWheel.setPower(diagonal2);
-
-        } else {
-
-            // clip the right/left values so that the values never exceed +/- 1
-            right = Range.clip(right, -1, 1);
-            left = Range.clip(left, -1, 1);
-            robot.motorLeftBackWheel.setPower(-left);
-            robot.motorLeftFrontWheel.setPower(-left);
-            robot.motorRightBackWheel.setPower(-right);
-            robot.motorRightFrontWheel.setPower(-right);
-
-        }
+        // clip the right/left values so that the values never exceed +/- 1
+        right = Range.clip(right, -1, 1);
+        left = Range.clip(left, -1, 1);
+        robot.motorLeftWheel.setPower(-left);
+        robot.motorRightWheel.setPower(-right);
 
 
         // Send telemetry message to signify robot running;
